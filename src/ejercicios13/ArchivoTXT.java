@@ -1,6 +1,7 @@
 package ejercicios13;
 
 import java.io.*;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -188,10 +189,8 @@ public class ArchivoTXT {
                     }
                 }
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
 
         return contador;
@@ -207,17 +206,15 @@ public class ArchivoTXT {
                 contador++;
             }
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
 
         return contador;
     }
 
     //Ejercicio 7: Contador de palabras
-    public int contadorPalabras(String ruta){
+    public int contadorPalabras(String ruta) throws IOException {
         int contador = 0;
         String linea;
         String [] palabras;
@@ -230,10 +227,6 @@ public class ArchivoTXT {
                 }
             }
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
 
         return contador;
@@ -257,16 +250,22 @@ public class ArchivoTXT {
                     }
                 }
             }
+            /*Las excepciones funcionan de menos a mas, es decir, si aqui colocas el IOException primero te dice que no va a ser capturada
+            porque FileNotFoundException hereda de IO.
+             */
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("No se ha encontrado el archivo" + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
         System.out.println(contador);
     }
 
     //Ejercicio 9: Contar las vocales pero con tildes incluidas
-    public void cuentaVocales2(String ruta){
+    /*CORRECCION:
+    El metodo debe ser int ya que se espera que devuelva un numero
+     */
+    public int cuentaVocales2(String ruta){
         String rutaEscribir = "src/ejercicios13/numVocales.txt";
         File fLeer = new File(ruta);
         File fEscribir = new File(rutaEscribir);
@@ -284,20 +283,23 @@ public class ArchivoTXT {
                 }
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("No se ha podido encontrar el archivo: " + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
-        System.out.println(contador);
+        return contador;
     }
 
-    //Ejercicio 10:
+    //Ejercicio 10: Contar con que frecuencia aparecen las letras
+    /*CORRECCION:
+    En caso de usar variables con un numero fijo es conveniente usar final para que en el futuro la legibilidad
+    del codigo será mas sencilla
+     */
     public void frecuenciaLetras(String ruta){
         File archivo = new File(ruta);
         String linea;
 
         Map<Character, Integer> frecuencia = new TreeMap<>();
-
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             while ((linea = br.readLine()) != null) {
                 linea = linea.toLowerCase();
@@ -307,8 +309,10 @@ public class ArchivoTXT {
                     }
                 }
             }
+        } catch (AccessDeniedException e) {
+            System.out.println("Acceso denegado: " + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException("Error al leer el archivo", e);
+            System.out.println(e.getMessage());
         }
 
         //Mostrar resultado

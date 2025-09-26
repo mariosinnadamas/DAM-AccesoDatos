@@ -1,6 +1,7 @@
 package ejercicios13;
 
 import java.io.*;
+import java.nio.file.InvalidPathException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -21,7 +22,7 @@ public class MainAmuletos {
                 bw.write(am.toCSV() + "\n");
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error: " + e.getMessage());
         }
 
         //Agregar amuleto con el archivo ya creado
@@ -35,7 +36,7 @@ public class MainAmuletos {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(f,true))){
             bw.write(am.toCSV() + "\n");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -50,8 +51,8 @@ public class MainAmuletos {
                 a = new Amuletos(datos[0],datos[1], Integer.parseInt(datos[2]),Double.parseDouble(datos[3]),Boolean.parseBoolean(datos[4]));
                 amuletos.add(a);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (FileNotFoundException e){
+            System.out.println("No se ha encontrado el archivo " + e.getMessage());
         }
 
         for (Amuletos am : amuletos){

@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f93cd670-2b7e-4e2d-8574-90570e0e3378" name="Changes" comment="" />
+    <list default="true" id="f93cd670-2b7e-4e2d-8574-90570e0e3378" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejercicios13/Amuletos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios13/Amuletos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejercicios13/ArchivoTXT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios13/ArchivoTXT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejercicios13/MainAmuletos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios13/MainAmuletos.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +23,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/DAM-AccesoDatos" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -72,11 +77,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/CarpetasEjercicios" />
       <recent name="$PROJECT_DIR$/src/ejercicios11" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="F:\2º\Acceso a datos\Tema1\MoverArchivoEliminar" />
       <recent name="$PROJECT_DIR$/src/ejercicios13" />
-      <recent name="F:\2º\Acceso a datos\Tema1\CarpetaLeer" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -123,7 +128,9 @@
       <workItem from="1758783100721" duration="569000" />
       <workItem from="1758783958449" duration="53000" />
       <workItem from="1758784074576" duration="516000" />
-      <workItem from="1758785210202" duration="784000" />
+      <workItem from="1758785210202" duration="3307000" />
+      <workItem from="1758871553273" duration="5000" />
+      <workItem from="1758871796473" duration="2726000" />
     </task>
     <servers />
   </component>

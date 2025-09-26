@@ -61,7 +61,7 @@ public class Amuletos {
                 "nombre='" + nombre + '\'' +
                 ", zona='" + zona + '\'' +
                 ", cantidad=" + cantidad +
-                ", dano=" + dano +
+                ", daño=" + dano +
                 ", activo=" + activo +
                 '}';
     }
