@@ -1,15 +1,15 @@
 package ejercicios13;
 
 import java.io.*;
-import java.nio.file.InvalidPathException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainAmuletos {
     public static void main(String[] args) {
         ArrayList<Amuletos> amuletos = new ArrayList<Amuletos>();
         String ruta = "src/ejercicios13/amuletos.csv";
+
         File f = new File(ruta);
 
         amuletos.add(new Amuletos("Brújula caprichosa", "Tienda", 1,0.0,true));
@@ -26,10 +26,11 @@ public class MainAmuletos {
         }
 
         //Agregar amuleto con el archivo ya creado
-        Amuletos a = new Amuletos("Cuerpo rápido 2", "Cumbre de cristal", 1,3.0,true);
-        agregarAmuletos(a);
+        Amuletos a2 = new Amuletos("Cuerpo rápido 2", "Cumbre de cristal", 1,3.0,true);
+        agregarAmuletos(a2);
         mostrarAmuletos(ruta);
     }
+
     public static void agregarAmuletos(Amuletos am){
         String ruta = "src/ejercicios13/amuletos.csv";
         File f = new File(ruta);

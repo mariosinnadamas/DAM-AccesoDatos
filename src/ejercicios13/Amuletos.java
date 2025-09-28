@@ -1,5 +1,7 @@
 package ejercicios13;
 
+import java.io.*;
+
 public class Amuletos {
     private String nombre;
     private String zona;
@@ -68,5 +70,16 @@ public class Amuletos {
 
     public String toCSV() {
         return this.nombre + ";" + this.zona + ";" + this.cantidad + ";" + this.dano + ";" + this.activo;
+    }
+    //1.4.1: Escribir en binario
+    public void escribirBinAmuletos(File f) throws FileNotFoundException {
+        try {
+           FileOutputStream fos = new FileOutputStream(f);
+           ObjectOutputStream oos = new ObjectOutputStream(fos);
+           oos.writeObject(this);
+           oos.close();
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
