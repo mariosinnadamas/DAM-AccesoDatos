@@ -72,7 +72,7 @@ public class AmuletosEj141 {
         return this.nombre + ";" + this.zona + ";" + this.cantidad + ";" + this.dano + ";" + this.activo;
     }
     //1.4.1: Escribir en binario
-    public void escribirBinAmuletos(File f) throws FileNotFoundException {
+    public void escribirBinAmuletos(File f) {
         try {
             FileOutputStream fos = new FileOutputStream(f);
             DataOutputStream dos = new DataOutputStream(fos);
@@ -82,8 +82,8 @@ public class AmuletosEj141 {
             dos.writeDouble(dano);
             dos.writeBoolean(activo);
             dos.close();
-        } catch (IOException e){
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

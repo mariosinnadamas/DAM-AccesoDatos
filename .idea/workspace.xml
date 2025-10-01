@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f93cd670-2b7e-4e2d-8574-90570e0e3378" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj144.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos144.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recursos/Amuleto143.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Recursos/Amuleto143.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recursos/Lista2BinAmuleto143.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recursos/ListaBinAmuleto143.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Recursos/ListaBinAmuleto143.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj141.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj141.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj143.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj143.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos142.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos142.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos143.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos143.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +142,7 @@
       <workItem from="1759309049792" duration="63000" />
       <workItem from="1759309119593" duration="129000" />
       <workItem from="1759309256953" duration="952000" />
-      <workItem from="1759312219437" duration="323000" />
+      <workItem from="1759312219437" duration="580000" />
     </task>
     <servers />
   </component>
