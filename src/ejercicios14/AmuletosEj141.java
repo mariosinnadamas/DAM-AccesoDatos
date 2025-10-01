@@ -71,7 +71,7 @@ public class AmuletosEj141 {
     public String toCSV() {
         return this.nombre + ";" + this.zona + ";" + this.cantidad + ";" + this.dano + ";" + this.activo;
     }
-    //1.4.1: Escribir en binario VOLVER A HACER SIN LA CLASE ObjectOutputStream para quitar serializable y hacerlo con DataOutputStream
+    //1.4.1: Escribir en binario
     public void escribirBinAmuletos(File f) throws FileNotFoundException {
         try {
             FileOutputStream fos = new FileOutputStream(f);

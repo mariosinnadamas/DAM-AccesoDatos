@@ -16,14 +16,15 @@ public class MainAmuletos142 {
         //Escritura objeto en binario
         AmuletosEj141 a = new AmuletosEj141("Cuerpo rápido 2", "Cumbre de cristal", 1,3.0,true);
 
-        //Ejercicio 1.4.1
+        //1.4.1
         try {
             a.escribirBinAmuletos(fBin);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        //1.4.2: Si intentas leer un archivo .txt te da un error de cabecera, "invalid stream header"
 
+        //1.4.2: Escribir y leer una lista de objetos
+        // Si intentas leer un archivo .txt te da un error de cabecera, "invalid stream header"
         listaAmuletos.add(new AmuletosEj141("Brújula caprichosa", "Tienda", 1,0.0,true));
         listaAmuletos.add(new AmuletosEj141("Enjambre recolector", "Parámos Fúngicos", 1,3.5,false));
         listaAmuletos.add(new AmuletosEj141("Coraza robusta", "Ciudad de lágrimas", 1,1.0,true));
@@ -63,8 +64,14 @@ public class MainAmuletos142 {
 
         try (DataInputStream dis = new DataInputStream(new FileInputStream(f))){
             while (true) {
+                String nombre = dis.readUTF();
                 try {
-                    AmuletosEj141 a = new AmuletosEj141(dis.readUTF(), dis.readUTF(), dis.readInt(), dis.readDouble(), dis.readBoolean());
+                    String zona = dis.readUTF();
+                    int cantidad = dis.readInt();
+                    double dano = dis.readDouble();
+                    boolean activo = dis.readBoolean();
+
+                    AmuletosEj141 a = new AmuletosEj141(nombre, zona, cantidad, dano, activo);
                     lista.add(a);
                 } catch (EOFException eof) {
                     break;

@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f93cd670-2b7e-4e2d-8574-90570e0e3378" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Recursos/Amuleto143.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Recursos/Lista2BinAmuleto143.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Recursos/ListaBinAmuleto143.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj143.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos142.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos143.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recursos/AmuletoBinario.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recursos/listaAmuletos.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejercicios13/Lorem ipsum.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios13/Lorem ipsum.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj14.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj141.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos14.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj144.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos144.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recursos/Amuleto143.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Recursos/Amuleto143.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recursos/Lista2BinAmuleto143.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recursos/ListaBinAmuleto143.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Recursos/ListaBinAmuleto143.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj141.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj141.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj143.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios14/AmuletosEj143.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos142.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos142.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos143.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ejercicios14/MainAmuletos143.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +36,12 @@
     &quot;assignee&quot;: &quot;mariosinnadamas&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mariosinnadamas/DAM-AccesoDatos.git",
-    "accountId": "cc484413-c54c-4666-a7e7-88f7c4224823"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mariosinnadamas/DAM-AccesoDatos.git&quot;,
+    &quot;accountId&quot;: &quot;cc484413-c54c-4666-a7e7-88f7c4224823&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -54,38 +52,39 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Ejercicio1.executor": "Run",
-    "Application.Ejercicio2.executor": "Run",
-    "Application.Ejercicio3.executor": "Run",
-    "Application.Ejercicio4.executor": "Run",
-    "Application.Ejercicio5.executor": "Run",
-    "Application.Ejercicio6.executor": "Debug",
-    "Application.Ejercicio7.executor": "Run",
-    "Application.Ejercicio8.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MainAmuletos.executor": "Run",
-    "Application.MainAmuletos14.executor": "Run",
-    "Application.MainAmuletos142.executor": "Run",
-    "Application.MainAmuletos143.executor": "Run",
-    "Application.MainArchivoTexto.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Volumes/Mario/2/AccesoDatos",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
-    "two.files.diff.last.used.file": "F:/2/AccesoDatos/src/ejercicios14/MainAmuletos143.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Ejercicio1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Ejercicio2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Ejercicio3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Ejercicio4.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Ejercicio5.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Ejercicio6.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Ejercicio7.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Ejercicio8.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainAmuletos.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainAmuletos14.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainAmuletos142.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainAmuletos143.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainAmuletos144.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainArchivoTexto.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mario/Documents/DAM/2/AccesoDatos&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
+    &quot;two.files.diff.last.used.file&quot;: &quot;F:/2/AccesoDatos/src/ejercicios14/MainAmuletos143.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/CarpetasEjercicios" />
@@ -145,7 +144,12 @@
       <workItem from="1758926801323" duration="90000" />
       <workItem from="1759073811860" duration="5372000" />
       <workItem from="1759153288530" duration="9363000" />
-      <workItem from="1759178600444" duration="1600000" />
+      <workItem from="1759178600444" duration="1643000" />
+      <workItem from="1759303809364" duration="4813000" />
+      <workItem from="1759309049792" duration="63000" />
+      <workItem from="1759309119593" duration="129000" />
+      <workItem from="1759309256953" duration="952000" />
+      <workItem from="1759312219437" duration="323000" />
     </task>
     <servers />
   </component>

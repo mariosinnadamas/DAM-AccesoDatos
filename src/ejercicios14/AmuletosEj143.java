@@ -3,7 +3,7 @@ package ejercicios14;
 import java.io.*;
 import java.time.LocalDate;
 
-public class AmuletosEj143 implements Externalizable{
+public class AmuletosEj143 implements Serializable{
     private String nombre;
     private String zona;
     private int cantidad;
@@ -18,10 +18,6 @@ public class AmuletosEj143 implements Externalizable{
         this.dano = dano;
         this.activo = activo;
         this.fecha=fecha;
-    }
-
-    public AmuletosEj143() {
-        //Constructor vacio obligatorio para externalizable
     }
 
     @Override
@@ -45,27 +41,5 @@ public class AmuletosEj143 implements Externalizable{
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    @Override
-    //Aqui debe hacerse to-do con writeObject/readobject o con writeUTF y readUTF
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(this.nombre);
-        out.writeObject(this.zona);
-        out.writeObject(this.cantidad);
-        out.writeObject(this.dano);
-        out.writeObject(this.activo);
-        out.writeObject(this.fecha);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        nombre = (String) in.readObject();
-        zona = (String) in.readObject();
-        cantidad = (int) in.readObject();
-        dano = (double) in.readObject();
-        activo = (boolean) in.readObject();
-        //Con el campo fecha al haber usado LocalDate puedo usar un in.readObject y no tener problema de nada
-        fecha = (LocalDate) in.readObject();
     }
 }
