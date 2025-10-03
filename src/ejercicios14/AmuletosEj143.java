@@ -4,6 +4,10 @@ import java.io.*;
 import java.time.LocalDate;
 
 public class AmuletosEj143 implements Serializable{
+
+    @Serial
+    private static final long serialVersionUID = 2;
+
     private String nombre;
     private String zona;
     private int cantidad;
