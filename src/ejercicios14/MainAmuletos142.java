@@ -2,7 +2,6 @@ package ejercicios14;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MainAmuletos142 {
     public static void main(String[] args) {
@@ -20,7 +19,7 @@ public class MainAmuletos142 {
         a.escribirBinAmuletos(fBin);
 
         //1.4.2: Escribir y leer una lista de objetos
-        // Si intentas leer un archivo .txt te da un error de cabecera, "invalid stream header"
+        // Se puede solo que hay que controlar las IOException
         listaAmuletos.add(new AmuletosEj141("Brújula caprichosa", "Tienda", 1,0.0,true));
         listaAmuletos.add(new AmuletosEj141("Enjambre recolector", "Parámos Fúngicos", 1,3.5,false));
         listaAmuletos.add(new AmuletosEj141("Coraza robusta", "Ciudad de lágrimas", 1,1.0,true));
@@ -64,8 +63,8 @@ public class MainAmuletos142 {
 
         try (DataInputStream dis = new DataInputStream(new FileInputStream(f))){
             while (true) {
-                String nombre = dis.readUTF();
                 try {
+                    String nombre = dis.readUTF();
                     String zona = dis.readUTF();
                     int cantidad = dis.readInt();
                     double dano = dis.readDouble();

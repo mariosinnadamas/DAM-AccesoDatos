@@ -4,6 +4,13 @@ import java.io.*;
 import java.time.LocalDate;
 
 public class AmuletosEj144 implements Externalizable {
+    /*Habría que hacer la serialVersionUID porque si el dia de mañana cambias la version o los datos puede darte error
+    porque no coinciden las versiones y te lo va a sustituir y eso dará error (asi evitamos darle el control
+     a la máquina virtual de java)
+     */
+    @Serial
+    private static final long serialVersionUID = 2;
+
     private String nombre;
     private String zona;
     private int cantidad;
@@ -35,7 +42,7 @@ public class AmuletosEj144 implements Externalizable {
     }
 
     //1.4.3: Escribir en binario
-    public void escribirBinAmuletos(File f) throws FileNotFoundException, IOException {
+    public void escribirBinAmuletos(File f) throws IOException {
         try {
             FileOutputStream fos = new FileOutputStream(f);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -58,7 +65,7 @@ public class AmuletosEj144 implements Externalizable {
     }
 
     @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException {
         nombre = in.readUTF();
         zona = in.readUTF();
         cantidad = in.readInt();
