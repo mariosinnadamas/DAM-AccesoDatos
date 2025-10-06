@@ -3,8 +3,9 @@ package ejercicios11;
 import java.io.File;
 
 public class Ejercicio1 {
-    public static void main(String[] args) {
-        /*
+    /*
+        Crea un metodo listarDirectorio()que devuelva una array con el listado del
+        contenido (archivos y carpetas) del directorio actual.
         ¿Este metodo debería ser dinámico o estático? ¿por qué?
 
         Estático, para que así no sea necesario instanciarlo y
@@ -13,6 +14,9 @@ public class Ejercicio1 {
         Se usa static porque el main es static tambien
         y así podemos usarlo.
          */
+
+    public static void main(String[] args) {
+
         try {
             String[] archivos = listarDirectorio();
 
