@@ -1,0 +1,32 @@
+Piensa y describe brevemente cómo harías cada una de las operaciones CRUD
+sobre registros (CRUD) en las siguientes organizaciones de ficheros:
+a) Secuencial.
+    Crear: Para añadir un nuevo registro lo haría al final del archivo, de
+    querer ponerlo en otro lugar habría que reorganziar el fichero entero
+    e indicar en que posición exacta lo quiero
+    Leer: Se empezaría desde el principio hasta el punto deseado
+    Actualizar: Se leeria el fichero desde el principio hasta el campo
+    que se desea modificar, se cambia y se sobreescribe
+    Borrar: Se borra el campo deseado y luego se escribiría el archivo
+    de nuevo pero sin ese campo
+b) Secuencial encadenada.
+    Crear: Añadiría el registro al final y modificaría el útlimo
+    registro para que apunte al nuevo
+    Leer: Lee desde el primero hasta el que queremos llegar
+    Actualizar: Lee el fichero hasta el puntero indicado y lo modifica
+    Borrar: Se encuentra el registro, se borra, y modifica el anterior
+    para que apunte al siguiente registro del que se acaba de borrar
+c) Directa o aleatoria.
+    Crear: Agrega directamente en una posición, si está ocupada
+    moverá el resto
+    Leer: Buscará la clave y accederá directamente al registro
+    Actualizar: Buscará la clave y modificará el registro
+    Borrar: Busca directamente la clave y elimina el registro
+d) Secuencial indexada.
+    Crear: Añade el registro manteniendo el orden y actualiza el
+    índice para que apunte al nuevo rgeistro
+    Leer: Busca primero el índice y luego lee un atabla de índices de
+    forma secuencial
+    Actualizar: Localiza el registro y lo modifica directamente
+    Borrar: Elimina el registro y actualiza el índice
+
