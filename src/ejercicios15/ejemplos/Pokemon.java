@@ -1,18 +1,29 @@
-package ejercicios15;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 /*
 Completa la clase Pokemon para que sea un Java Bean que permita almacenar
 los siguientes atributos.
 Debes controlar los valores de los parámetros, gestionar posibles errores, etc.
 La clase Pokemon debe implementar Externalizable.
  */
-import java.io.*;
-
+package ejercicios15.ejemplos;
 /*CONDICIONES PARA QUE UNA CLASE SEA JAVA BEAN:
 - Tener un constructor sin argumentos.
 - Sus atributos de clase deben ser privados y ser accesibles mediante métodos get y set.
 - Ser serializable.
  */
-public class Ej152 implements Externalizable {
+
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
+/**
+ * @author Sergio Cuesta
+ */
+public class Pokemon implements Externalizable {
     private String nombre;
     private int nivel;
     private int vida;
@@ -23,7 +34,7 @@ public class Ej152 implements Externalizable {
     private int velocidad;
 
     //Constructor con argumentos
-    public Ej152(String nombre, int nivel, int vida, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad) {
+    public Pokemon(String nombre, int nivel, int vida, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad) {
         setNombre(nombre);
         setNivel(nivel);
         setAtaque(ataque);
@@ -34,7 +45,7 @@ public class Ej152 implements Externalizable {
     }
 
     //Constructor sin argumentos
-    public Ej152() {
+    public Pokemon() {
         this.nombre = "Desconocido";
         this.nivel = 1;
         this.vida = 10;
