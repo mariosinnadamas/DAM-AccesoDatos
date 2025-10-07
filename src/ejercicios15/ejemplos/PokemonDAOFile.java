@@ -20,9 +20,14 @@ import java.util.List;
  * @author Sergio Cuesta
  */
 public class PokemonDAOFile implements PokemonDAO {
-    private final File f = new File("Recursos/Pokemon.dat");
+
+    private final File f;
     private final int max_size = 100;
     private int contadorPokemon;
+
+    public PokemonDAOFile(String rutafichero) {
+        this.f = new File(rutafichero);
+    }
 
 
     //Metodo para comprobar que la lista está vacía
@@ -45,28 +50,29 @@ public class PokemonDAOFile implements PokemonDAO {
             throw new DataAccessException("No se ha podido acceder al almacén", e);
         }
     }
-
+    //Metodo para añadir un pokemon
     @Override
     public void aniadir(Pokemon pokemon) throws DataAccessException, DataDestFullException, DuplicateKeyException, IncompatibleVersionException {
-        //Lectura del fichero
-        if (!estaLLeno()){
-            //Leo con el metodo de lectura, como este metodo ya controla DataAccesException
-            List<Pokemon> lista = leerPokemons();
+        //Leo con el metodo de lectura, este metodo ya controla DataAccesException
+        List<Pokemon> lista = leerPokemons();
 
-            for (Pokemon temp : lista){
-                if (!temp.getNombre().equalsIgnoreCase(pokemon.getNombre())){
-                    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f,true))){
-                        oos.writeObject(pokemon);
-                        contadorPokemon++; //Incremento de contador para saber cuantos objetos hay en la lista
-                    } catch (IOException e) { //Si no encuentra el archivo y/o no se puede escribir
-                        throw new DataDestFullException("No se ha encontrado el archivo o no se puede escribir");
-                    }
-                } else {
-                    throw new DuplicateKeyException("El pokemon ya existe"); //El pokemon ya existía en la lista
-                }
+        if (lista.size()>= max_size){
+            throw new DataDestFullException("El almacén está lleno, no se puede añadir más Pokémon.");
+        }
+
+        for (Pokemon p: lista){
+            if (p.getNombre().equalsIgnoreCase(pokemon.getNombre())){
+                throw new DuplicateKeyException("El pokemon ya existe"); //El pokemon ya existía en la lista
             }
-        } else {
-            throw new DataDestFullException("Almacén lleno, no se pueden añadir más Pokémon"); //Esta lleno el archivo
+        }
+
+        lista.add(pokemon);
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f,true))){
+            oos.writeObject(pokemon);
+            contadorPokemon++; //Incremento de contador para saber cuantos objetos hay en la lista
+        } catch (IOException e) { //Si no encuentra el archivo y/o no se puede escribir
+            throw new DataDestFullException("No se ha encontrado el archivo o no se puede escribir");
         }
     }
 
@@ -98,6 +104,11 @@ public class PokemonDAOFile implements PokemonDAO {
     //Metodo lectura de pokemon
     public List<Pokemon> leerPokemons() throws DataAccessException, IncompatibleVersionException {
         List<Pokemon> pokemonColeccion = new ArrayList <>();
+
+        if (!f.exists()){
+            return pokemonColeccion;
+        }
+
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))){
             while (true){
                 try {
