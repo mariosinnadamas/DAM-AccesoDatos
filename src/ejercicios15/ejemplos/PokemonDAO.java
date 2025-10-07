@@ -10,11 +10,11 @@ import ejercicios15.ejemplos.excepciones.DataIntegrityException;
 import ejercicios15.ejemplos.excepciones.DuplicateKeyException;
 import ejercicios15.ejemplos.excepciones.IncompatibleVersionException;
 
+import java.io.File;
 import java.nio.file.NoSuchFileException;
 import java.util.List;
 
 public interface PokemonDAO {
-
 
     /**
      * Comprueba si el almacén está vacio.

@@ -10,6 +10,7 @@ import ejercicios15.ejemplos.excepciones.DataIntegrityException;
 import ejercicios15.ejemplos.excepciones.DuplicateKeyException;
 import ejercicios15.ejemplos.excepciones.IncompatibleVersionException;
 
+import java.io.File;
 import java.nio.file.NoSuchFileException;
 import java.util.List;
 
@@ -18,9 +19,23 @@ import java.util.List;
  * @author Sergio Cuesta
  */
 public class PokemonDAOFile implements PokemonDAO {
+    private final File archivo;
+    private final int max_pokemon = 100;
+
+    File f = new File("Recursos/Pokemon.dat");
+
+    //Constructor del archivo
+    public PokemonDAOFile(String rutaArchivo) {
+        this.archivo = new File(rutaArchivo);
+    }
+
     @Override
     public boolean estaVacio() throws DataAccessException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (f.exists()){
+            return true;
+        } else {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
     }
 
     @Override
