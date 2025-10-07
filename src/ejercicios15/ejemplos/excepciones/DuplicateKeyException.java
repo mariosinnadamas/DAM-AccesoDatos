@@ -9,5 +9,8 @@ package ejercicios15.ejemplos.excepciones;
  * @author Sergio Cuesta
  */
 public class DuplicateKeyException extends Exception {
-    
+
+    public DuplicateKeyException(String message) {
+        super(message);
+    }
 }

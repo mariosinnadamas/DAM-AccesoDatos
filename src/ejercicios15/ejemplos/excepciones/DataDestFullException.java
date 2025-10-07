@@ -9,5 +9,15 @@ package ejercicios15.ejemplos.excepciones;
  * @author Sergio Cuesta
  */
 public class DataDestFullException extends Exception {
-    
+    public DataDestFullException(){
+        super("El almacén esta lleno");
+    }
+
+    public DataDestFullException(String message){
+        super(message);
+    }
+
+    public DataDestFullException(String message, Throwable cause){
+        super(message, cause);
+    }
 }
