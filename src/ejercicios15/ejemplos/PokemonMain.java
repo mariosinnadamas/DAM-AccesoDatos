@@ -48,31 +48,27 @@ public class PokemonMain {
             System.out.println("LISTA DE POKEMONS LEÍDOS");
             List<Pokemon> lista = dao.leerPokemons();
             lista.forEach(System.out::println);
-            System.out.println();
 
             System.out.println("BUSCANDO POKEMONS QUE CONTIENEN 'saur'");
             List<Pokemon> saurList = dao.leerPokemons("saur");
             saurList.forEach(System.out::println);
-            System.out.println();
 
             System.out.println("ELIMINANDO A PIKACHU ");
             boolean eliminado = dao.eliminar(new Pokemon("Pikachu", 10, 35, 55, 40, 50, 50, 90));
-            System.out.println("¿Eliminado Pikachu? " + eliminado);
-            System.out.println();
+            System.out.println("Resultado: " + eliminado);
 
             System.out.println("ACTUALIZANDO A CHARMANDER");
             Pokemon nuevoCharmander = new Pokemon("Charmander", 10, 50, 60, 45, 65, 55, 70);
             dao.actualizar(nuevoCharmander);
-            System.out.println("Charmander actualizado correctamente.\n");
+            System.out.println("Charmander actualizado correctamente");
 
             System.out.println("CREANDO CSV DE POKEMONS");
             dao.pokemonCSV(rutaCSV, "Snorlax", 40, 160, 110, 65, 65, 110, 30);
             dao.pokemonCSV(rutaCSV, "Mew", 50, 100, 100, 100, 100, 100, 100);
-            System.out.println("CSV generado correctamente.\n");
+            System.out.println("CSV generado correctamente");
 
             System.out.println("IMPRIMIENDO CONTENIDO DEL CSV");
             dao.imprimirPokemonCSV(rutaCSV);
-            System.out.println();
 
             System.out.println("IMPRIMIENDO POKEMONS QUE CONTIENEN 'char'");
             dao.imprimirPokemon("char");
