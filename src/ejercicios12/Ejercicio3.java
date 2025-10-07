@@ -1,10 +1,13 @@
+/*
 package ejercicios12;
 
+
 public class Ejercicio3 {
-    /*Producirá si o si el print del finally.
-    Además, como hereda de la clase exception imprimirá el print
-    del catch
-     */
+  /*Producirá si o si el print del finally.
+  Además, como hereda de la clase exception imprimirá el print
+  del catch
+
+
     public static void main(String[] args) {
 
         class Prueba extends Exception { }
@@ -22,4 +25,4 @@ public class Ejercicio3 {
             }
         }
     }
-}
+}*/
