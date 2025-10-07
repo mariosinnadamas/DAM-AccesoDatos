@@ -55,7 +55,7 @@ public interface PokemonDAO {
      * @throws DataAccessException si no se ha podido acceder al almacén de datos.
      * @throws DataIntegrityException si la eliminación no se puede realizar por violar restricciones de integridad.
      */
-    public boolean eliminar(Pokemon pokemon) throws DataAccessException, DataIntegrityException;
+    public boolean eliminar(Pokemon pokemon) throws DataAccessException, DataIntegrityException, IncompatibleVersionException;
 
     /**
      * Devuelve una lista de objetos pokemon del almacén.
