@@ -10,7 +10,6 @@ import ejercicios15.ejemplos.excepciones.DataIntegrityException;
 import ejercicios15.ejemplos.excepciones.DuplicateKeyException;
 import ejercicios15.ejemplos.excepciones.IncompatibleVersionException;
 
-import java.io.File;
 import java.nio.file.NoSuchFileException;
 import java.util.List;
 
@@ -44,7 +43,7 @@ public interface PokemonDAO {
      * @throws DuplicateKeyException si el pokemon ya existía en el almacén.
      */
     public void aniadir(Pokemon pokemon) throws DataAccessException, DataDestFullException,
-            DuplicateKeyException;
+            DuplicateKeyException, IncompatibleVersionException;
 
     /**
      * Elimina un elemento del almacén si está en él.

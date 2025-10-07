@@ -24,115 +24,199 @@ public class PokemonDAOFile implements PokemonDAO {
     private final int max_size = 100;
     private int contadorPokemon;
 
+
+    //Metodo para comprobar que la lista está vacía
     @Override
     public boolean estaVacio() throws DataAccessException {
         try{
+            if (!f.exists()) return true;
             return contadorPokemon == 0;
         } catch (Exception e){
-            throw new DataAccessException();
+            throw new DataAccessException("No se ha podido acceder al almacén", e);
         }
     }
 
+    //Metodo para comprobar que la lista esta llena
     @Override
     public boolean estaLLeno() throws DataAccessException {
-        if (f.length()>=max_size){
-            return true;
-        } else {
-            throw new DataAccessException();
+        try{
+            return contadorPokemon == max_size;
+        } catch (Exception e){
+            throw new DataAccessException("No se ha podido acceder al almacén", e);
         }
     }
 
     @Override
-    public void aniadir(Pokemon pokemon) throws DataAccessException, DataDestFullException, DuplicateKeyException {
-        //TODO: Arreglar excepciones, sustituir la parte de eliminar por la llamada al metodo eliminar
-        boolean borrado = false;
+    public void aniadir(Pokemon pokemon) throws DataAccessException, DataDestFullException, DuplicateKeyException, IncompatibleVersionException {
+        //Lectura del fichero
         if (!estaLLeno()){
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))){
-                while (true){
-                    Pokemon existente = new Pokemon();
-                    existente.readExternal(ois);
-                    if (existente.getNombre().equals(pokemon.getNombre())){
-                        throw new DuplicateKeyException();
+            //Leo con el metodo de lectura, como este metodo ya controla DataAccesException
+            List<Pokemon> lista = leerPokemons();
+
+            for (Pokemon temp : lista){
+                if (!temp.getNombre().equalsIgnoreCase(pokemon.getNombre())){
+                    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f,true))){
+                        oos.writeObject(pokemon);
+                        contadorPokemon++; //Incremento de contador para saber cuantos objetos hay en la lista
+                    } catch (IOException e) { //Si no encuentra el archivo y/o no se puede escribir
+                        throw new DataDestFullException("No se ha encontrado el archivo o no se puede escribir");
                     }
+                } else {
+                    throw new DuplicateKeyException("El pokemon ya existe"); //El pokemon ya existía en la lista
                 }
-            } catch (FileNotFoundException e) {
-                throw new DataAccessException();
-            } catch (IOException e) {
-                throw new DataAccessException();
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
             }
-        }
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f,true))){
-            oos.writeObject(pokemon);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } else {
+            throw new DataDestFullException("Almacén lleno, no se pueden añadir más Pokémon"); //Esta lleno el archivo
         }
     }
 
     @Override
     public boolean eliminar(Pokemon pokemon) throws DataAccessException, DataIntegrityException, IncompatibleVersionException {
         //Leo el archivo y lo meto en una lista
+        List<Pokemon> lista = leerPokemons();
 
-        //TODO: Escritura de nuevo al fichero con el elemento borrado
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f))){
+        //Busco si existe un pokemon igual que el pasado por argumento para borrarlo
+        boolean eliminado = false;
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        for (int i = 0; i < lista.size(); i++) {
+            Pokemon p = lista.get(i);
+            if (p.getNombre().equalsIgnoreCase(pokemon.getNombre())){ //Si coincice en nombre se elimina
+                lista.remove(i);
+                eliminado = true;
+                contadorPokemon--; //Reduzco el contador para saber cuantos pokemon hay en la coleccion
+                break;
+            }
         }
-        throw new UnsupportedOperationException("Not supported yet.");
+        //Si no se ha podido eliminar
+        if (!eliminado){
+            throw new DataIntegrityException("No se ha encontrado el Pokémon a eliminar");
+        }
+        return eliminado;
     }
 
     @Override
     //Metodo lectura de pokemon
     public List<Pokemon> leerPokemons() throws DataAccessException, IncompatibleVersionException {
-        ArrayList pokemonColeccion = new ArrayList <Pokemon>();
+        List<Pokemon> pokemonColeccion = new ArrayList <>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))){
             while (true){
                 try {
                     Pokemon p = (Pokemon) ois.readObject();
                     pokemonColeccion.add(p);
-                } catch (EOFException e){
+                } catch (EOFException e){ //Fin del archivo
                     break;
-                } catch (ClassNotFoundException e) {
-                    throw new IncompatibleVersionException();
+                } catch (ClassNotFoundException e) { //Si los datos leidos no corresponden
+                    throw new IncompatibleVersionException("Versión incompatible del objeto", e);
                 }
             }
+            //Si no se ha podido acceder
         } catch (FileNotFoundException e) {
-            throw new DataAccessException();
+            throw new DataAccessException("Archivo no encontrado", e);
+            //Si los datos leidos no corresponden
         } catch (IOException e) {
-            throw new IncompatibleVersionException();
+            throw new DataAccessException("Error leyendo el fichero", e);
         }
         return pokemonColeccion;
     }
 
     @Override
     public List<Pokemon> leerPokemons(String nombre) throws DataAccessException, IncompatibleVersionException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //Lista filtrada
+        List<Pokemon> filtrados = new ArrayList <>();
+        for (Pokemon p : leerPokemons()){ //Traigo una lista del metodo
+            if (p.getNombre().toLowerCase().contains(nombre.toLowerCase())){
+                filtrados.add(p);
+            }
+        }
+        return filtrados;
     }
 
     @Override
     public void actualizar(Pokemon p) throws DataAccessException, IncompatibleVersionException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Pokemon> listaActualizada = leerPokemons();
+        boolean actualizado = false;
+
+        for (int i = 0; i < listaActualizada.size(); i++) {
+            if (listaActualizada.get(i).equals(p)){
+                listaActualizada.set(i,p);
+                actualizado = true;
+                break;
+            }
+        }
+
+        if (!actualizado){
+            throw new DataAccessException("La estructura del pokemon recibido no coincide");
+        }
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f))) {
+            for (Pokemon poke : listaActualizada) {
+                oos.writeObject(poke);
+            }
+        } catch (IOException e) {
+            throw new DataAccessException("Error escribiendo tras actualizar", e);
+        }
     }
 
     @Override
     public void pokemonCSV(String ruta, String name, int level, int life, int atack, int defense, int specialAttack, int specialdefense, int speed) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        Pokemon p = new Pokemon(name,level,life,atack,defense,specialAttack,specialdefense,speed);
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta,true))){
+            bw.write(p.toCSV());
+        } catch (IOException e) {
+            System.err.println("Error escribiendo CSV: " + e.getMessage());
+        }
     }
 
     @Override
     public void imprimirPokemonCSV(String ruta) throws NoSuchFileException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        File csv = new File(ruta);
+        if (!csv.exists()) {
+            throw new NoSuchFileException("El archivo no existe.");
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csv))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(";"); //Divido la linea con los ;
+                if (datos.length == 8) {
+                    System.out.println("Name: " + datos[0]);
+                    System.out.println("Level: " + datos[1]);
+                    System.out.println("HP: " + datos[2]);
+                    System.out.println("Attack: " + datos[3]);
+                    System.out.println("Defense: " + datos[4]);
+                    System.out.println("Special Attack: " + datos[5]);
+                    System.out.println("Special Defense: " + datos[6]);
+                    System.out.println("Speed: " + datos[7]);
+                    System.out.println("----------------------------");
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo CSV: " + e.getMessage());
+        }
     }
 
     @Override
     public void imprimirPokemon(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            List<Pokemon> lista = leerPokemons();
+            boolean encontrado = false;
+
+            for (Pokemon p : lista) {
+                if (p.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+                    System.out.println(p);
+                    encontrado = true;
+                }
+            }
+
+            if (!encontrado) {
+                System.out.println("No se encontraron pokemons con ese nombre");
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error al imprimir pokemons: " + e.getMessage());
+        }
     }
 
 }
