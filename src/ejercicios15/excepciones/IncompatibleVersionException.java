@@ -1,4 +1,4 @@
-package ejercicios15.ejemplos.excepciones;
+package ejercicios15.excepciones;
 
 public class IncompatibleVersionException extends Exception {
 

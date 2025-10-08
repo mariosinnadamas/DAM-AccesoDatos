@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
 
-package ejercicios15.ejemplos;
+package ejercicios15;
 
-import ejercicios15.ejemplos.excepciones.*;
+import ejercicios15.excepciones.*;
 
 import java.nio.file.NoSuchFileException;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author Sergio Cuesta
  */
 public class PokemonMain {
-
+    //Funciona si el archivo no existe, corregir para que funcione incluso cuando exista
     public static void main(String[] args) {
         // Ruta donde se guardarán los datos binarios y CSV
         String rutaBinario = "Recursos/pokemons.dat";

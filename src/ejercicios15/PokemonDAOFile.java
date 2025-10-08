@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ejercicios15.ejemplos;
+package ejercicios15;
 
-import ejercicios15.ejemplos.excepciones.DataAccessException;
-import ejercicios15.ejemplos.excepciones.DataDestFullException;
-import ejercicios15.ejemplos.excepciones.DataIntegrityException;
-import ejercicios15.ejemplos.excepciones.DuplicateKeyException;
-import ejercicios15.ejemplos.excepciones.IncompatibleVersionException;
+import ejercicios15.excepciones.DataAccessException;
+import ejercicios15.excepciones.DataDestFullException;
+import ejercicios15.excepciones.DataIntegrityException;
+import ejercicios15.excepciones.DuplicateKeyException;
+import ejercicios15.excepciones.IncompatibleVersionException;
 
 import java.io.*;
 import java.nio.file.NoSuchFileException;
@@ -69,7 +69,7 @@ public class PokemonDAOFile implements PokemonDAO {
         //Reescribo el fichero
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f))){
             for (Pokemon p : lista){
-                oos.writeObject(pokemon);
+                oos.writeObject(p);
             }
             contadorPokemon++; //Incremento de contador para saber cuantos objetos hay en la lista
         } catch (IOException e) { //Si no encuentra el archivo y/o no se puede escribir
@@ -204,19 +204,18 @@ public class PokemonDAOFile implements PokemonDAO {
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(";"); //Divido la linea con los ;
                 if (datos.length == 8) {
-                    System.out.println("Name: " + datos[0]);
-                    System.out.println("Level: " + datos[1]);
+                    System.out.println("Nombre: " + datos[0]);
+                    System.out.println("Nivel: " + datos[1]);
                     System.out.println("HP: " + datos[2]);
-                    System.out.println("Attack: " + datos[3]);
-                    System.out.println("Defense: " + datos[4]);
-                    System.out.println("Special Attack: " + datos[5]);
-                    System.out.println("Special Defense: " + datos[6]);
-                    System.out.println("Speed: " + datos[7]);
-                    System.out.println("----------------------------");
+                    System.out.println("Ataque: " + datos[3]);
+                    System.out.println("Defensa: " + datos[4]);
+                    System.out.println("Ataque especial: " + datos[5]);
+                    System.out.println("Defensa especial: " + datos[6]);
+                    System.out.println("Velocidad: " + datos[7]);
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error al leer el archivo CSV: " + e.getMessage());
+            System.err.println("Error al leer el CSV: " + e.getMessage());
         }
     }
 
