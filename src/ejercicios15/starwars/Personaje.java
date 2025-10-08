@@ -5,7 +5,7 @@ public class Personaje {
     private String gender;
     private String birth_year;
     private int height;
-    private int mass;
+    private float mass;
     private String skin_color;
     private String eye_color;
     private String planet;
@@ -16,7 +16,7 @@ public class Personaje {
     }
 
     //Constructor con parámetros
-    public Personaje(String name, String gender, String birth_year, int height, int mass, String skin_color, String eye_color, String planet, String species) {
+    public Personaje(String name, String gender, String birth_year, int height, float mass, String skin_color, String eye_color, String planet, String species) {
         setName(name);
         setGender(gender);
         setBirth_year(birth_year);
@@ -33,7 +33,10 @@ public class Personaje {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name == null || name.isEmpty()){
+            throw new IllegalArgumentException("El nombre no puede estar vacío");
+        }
+        this.name = name.trim();
     }
 
     public String getGender() {
@@ -41,7 +44,10 @@ public class Personaje {
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        if (gender == null || gender.isEmpty()){
+            throw new IllegalArgumentException("El género no puede estar vacío");
+        }
+        this.gender = gender.trim();
     }
 
     public String getBirth_year() {
@@ -49,7 +55,10 @@ public class Personaje {
     }
 
     public void setBirth_year(String birth_year) {
-        this.birth_year = birth_year;
+        if (birth_year == null || birth_year.isEmpty()){
+            throw new IllegalArgumentException("El género no puede estar vacío");
+        }
+        this.birth_year = birth_year.trim();
     }
 
     public int getHeight() {
@@ -60,11 +69,11 @@ public class Personaje {
         this.height = height;
     }
 
-    public int getMass() {
+    public float getMass() {
         return mass;
     }
 
-    public void setMass(int mass) {
+    public void setMass(float mass) {
         this.mass = mass;
     }
 
