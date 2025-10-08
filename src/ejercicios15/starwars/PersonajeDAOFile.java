@@ -43,7 +43,9 @@ public class PersonajeDAOFile implements PersonajeDAO{
     }
 
     @Override
-    public boolean eliminar(Personaje p) throws AccesoArchivoException, PersonajeNoEncontradoException {
+    public boolean eliminar(Personaje p) throws AccesoArchivoException, PersonajeNoEncontradoException, IntegridadCSVException {
+        ArrayList<Personaje>lista = leerPersonajes();
+        boolean eliminado = false;
         return false;
     }
 
@@ -98,4 +100,9 @@ public class PersonajeDAOFile implements PersonajeDAO{
     public boolean actualizarPersonaje(Personaje p) throws AccesoArchivoException {
         return false;
     }
+    /*
+     * Todo: Hacer un metodo para que respete las " y no usar la expresión regular.
+     *  El metodo usará char para contar caracter a caracter, una variante boolean por si encuentra unas " que cambie a
+     *  true y asi las respete.
+     */
 }

@@ -30,7 +30,7 @@ public interface PersonajeDAO {
      * @throws AccesoArchivoException si no ha podido acceder al archivo
      * @throws PersonajeNoEncontradoException Si no ha encontrado al personaje
      */
-    public boolean eliminar (Personaje p) throws AccesoArchivoException, PersonajeNoEncontradoException;
+    public boolean eliminar (Personaje p) throws AccesoArchivoException, PersonajeNoEncontradoException, IntegridadCSVException;
 
     /**
      * Muestra los personajes del almacén
