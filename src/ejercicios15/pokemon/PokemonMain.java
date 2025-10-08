@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
 
-package ejercicios15.pokemon.excepciones;
+package ejercicios15.pokemon;
+
+import ejercicios15.pokemon.excepciones.*;
 
 import java.nio.file.NoSuchFileException;
 import java.util.List;

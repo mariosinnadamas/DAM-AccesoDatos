@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ejercicios15.pokemon.excepciones;
+package ejercicios15.pokemon;
+
+import ejercicios15.pokemon.excepciones.*;
 
 import java.io.*;
 import java.nio.file.NoSuchFileException;
