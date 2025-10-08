@@ -6,8 +6,9 @@ public class Personaje {
     private String birth_year;
     private int height;
     private float mass;
-    private String skin_color;
-    private String eye_color;
+    private String hair_colour;
+    private String skin_colour;
+    private String eye_colour;
     private String planet;
     private String species;
 
@@ -16,14 +17,15 @@ public class Personaje {
     }
 
     //Constructor con parámetros
-    public Personaje(String name, String gender, String birth_year, int height, float mass, String skin_color, String eye_color, String planet, String species) {
+    public Personaje(String name, String gender, String birth_year, int height, float mass, String hair_colour, String skin_colour, String eye_colour, String planet, String species) {
         setName(name);
         setGender(gender);
         setBirth_year(birth_year);
         setHeight(height);
         setMass(mass);
-        setSkin_color(skin_color);
-        setEye_color(eye_color);
+        setHair_colour(hair_colour);
+        setSkin_colour(skin_colour);
+        setEye_colour(eye_colour);
         setPlanet(planet);
         setSpecies(species);
     }
@@ -83,26 +85,37 @@ public class Personaje {
         this.mass = mass;
     }
 
-    public String getSkin_color() {
-        return skin_color;
+    public String getHair_colour() {
+        return hair_colour;
     }
 
-    public void setSkin_color(String skin_color) {
-        if (skin_color == null || skin_color.isEmpty()){
+    public void setHair_colour(String hair_colour) {
+        if (hair_colour == null || hair_colour.isEmpty()){
+            throw new IllegalArgumentException("El color de pelo no puede estar vacío");
+        }
+        this.hair_colour = hair_colour;
+    }
+
+    public String getSkin_colour() {
+        return skin_colour;
+    }
+
+    public void setSkin_colour(String skin_colour) {
+        if (skin_colour == null || skin_colour.isEmpty()){
             throw new IllegalArgumentException("El color de piel no puede estar vacío");
         }
-        this.skin_color = skin_color.trim();
+        this.skin_colour = skin_colour.trim();
     }
 
-    public String getEye_color() {
-        return eye_color;
+    public String getEye_colour() {
+        return eye_colour;
     }
 
-    public void setEye_color(String eye_color) {
-        if (eye_color == null || eye_color.isEmpty()){
+    public void setEye_colour(String eye_colour) {
+        if (eye_colour == null || eye_colour.isEmpty()){
             throw new IllegalArgumentException("El color de ojos no puede estar vacío");
         }
-        this.eye_color = eye_color;
+        this.eye_colour = eye_colour;
     }
 
     public String getPlanet() {
@@ -134,14 +147,28 @@ public class Personaje {
                 ", Año de nacimiento='" + birth_year + '\'' +
                 ", Altura=" + height +
                 ", Peso=" + mass +
-                ", Color de piel='" + skin_color + '\'' +
-                ", Color de ojos='" + eye_color + '\'' +
+                ", Color de pelo=" + hair_colour + '\'' +
+                ", Color de piel='" + skin_colour + '\'' +
+                ", Color de ojos='" + eye_colour + '\'' +
                 ", Planeta='" + planet + '\'' +
                 ", Especie='" + species + '\'' +
                 '}';
     }
     public String toCSV(){
-        return name + ";" + gender + ";" + birth_year + ";" + height + ";" +
-                mass + ";" + skin_color + ";" + eye_color + ";" + planet + ";" + species;
+        return name + "," + gender + "," + birth_year + "," + height + "," +
+                mass + "," + hair_colour +"," + skin_colour + "," + eye_colour + "," + planet + "," + species;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;     //Misma referencia
+        if (o == null || getClass() != o.getClass()) return false;      //Tipo distinto
+        Personaje p = (Personaje) o;
+        return name.equalsIgnoreCase(p.getName()); //Igualdad de nombre
+    }
+
+    @Override
+    public int hashCode() {
+        return name.toLowerCase().hashCode();
     }
 }

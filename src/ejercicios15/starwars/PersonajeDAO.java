@@ -5,6 +5,8 @@ import ejercicios15.starwars.excepciones.IntegridadCSVException;
 import ejercicios15.starwars.excepciones.PersonajeDuplicadoException;
 import ejercicios15.starwars.excepciones.PersonajeNoEncontradoException;
 
+import java.util.ArrayList;
+
 public interface PersonajeDAO {
 
     //Metodos CRUD
@@ -36,7 +38,7 @@ public interface PersonajeDAO {
      * @throws AccesoArchivoException si no ha podido acceder al archivo
      * @throws IntegridadCSVException si no coinciden los datos (quito este metodo)
      */
-    public void leerPersonajes() throws AccesoArchivoException, IntegridadCSVException;
+    public ArrayList<Personaje> leerPersonajes() throws AccesoArchivoException, IntegridadCSVException;
 
     /**
      * Actualiza un elemento del almacén
