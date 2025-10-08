@@ -188,7 +188,6 @@ public class Pokemon implements Externalizable {
                 velocidad + "\n";
     }
 
-    //No sé modificar esto
     @Override
     public boolean equals(Object o) {
         Pokemon p = (Pokemon) o;

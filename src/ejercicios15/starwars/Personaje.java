@@ -66,6 +66,9 @@ public class Personaje {
     }
 
     public void setHeight(int height) {
+        if (height < 0){
+            throw new IllegalArgumentException("La altura no puede ser inferior a 0");
+        }
         this.height = height;
     }
 
@@ -74,6 +77,9 @@ public class Personaje {
     }
 
     public void setMass(float mass) {
+        if (mass < 0){
+            throw new IllegalArgumentException("El peso no puede ser inferior a 0");
+        }
         this.mass = mass;
     }
 
@@ -82,7 +88,10 @@ public class Personaje {
     }
 
     public void setSkin_color(String skin_color) {
-        this.skin_color = skin_color;
+        if (skin_color == null || skin_color.isEmpty()){
+            throw new IllegalArgumentException("El color de piel no puede estar vacío");
+        }
+        this.skin_color = skin_color.trim();
     }
 
     public String getEye_color() {
@@ -90,6 +99,9 @@ public class Personaje {
     }
 
     public void setEye_color(String eye_color) {
+        if (eye_color == null || eye_color.isEmpty()){
+            throw new IllegalArgumentException("El color de ojos no puede estar vacío");
+        }
         this.eye_color = eye_color;
     }
 
@@ -98,6 +110,9 @@ public class Personaje {
     }
 
     public void setPlanet(String planet) {
+        if (planet == null || planet.isEmpty()){
+            throw new IllegalArgumentException("El planeta no puede estar vacío");
+        }
         this.planet = planet;
     }
 
@@ -106,21 +121,27 @@ public class Personaje {
     }
 
     public void setSpecies(String species) {
+        if (species == null || species.isEmpty()){
+            throw new IllegalArgumentException("La especie no puede estar vacía");
+        }
         this.species = species;
     }
 
     @Override
     public String toString() {
-        return "Personaje{" +
-                "name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", birth_birday='" + birth_year + '\'' +
-                ", height=" + height +
-                ", mass=" + mass +
-                ", skin_color='" + skin_color + '\'' +
-                ", eye_color='" + eye_color + '\'' +
-                ", planet='" + planet + '\'' +
-                ", human='" + species + '\'' +
+        return "Nombre='" + name + '\'' +
+                ", Género='" + gender + '\'' +
+                ", Año de nacimiento='" + birth_year + '\'' +
+                ", Altura=" + height +
+                ", Peso=" + mass +
+                ", Color de piel='" + skin_color + '\'' +
+                ", Color de ojos='" + eye_color + '\'' +
+                ", Planeta='" + planet + '\'' +
+                ", Especie='" + species + '\'' +
                 '}';
+    }
+    public String toCSV(){
+        return name + ";" + gender + ";" + birth_year + ";" + height + ";" +
+                mass + ";" + skin_color + ";" + eye_color + ";" + planet + ";" + species;
     }
 }
