@@ -24,7 +24,7 @@ import java.io.ObjectOutput;
  * @author Sergio Cuesta
  */
 public class Pokemon implements Externalizable {
-    private static final long serialUID = 1;
+    private static final long serialVersionUID = 1;
 
     private String nombre;
     private int nivel;
@@ -39,6 +39,7 @@ public class Pokemon implements Externalizable {
     public Pokemon(String nombre, int nivel, int vida, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad) {
         setNombre(nombre);
         setNivel(nivel);
+        setVida(vida);
         setAtaque(ataque);
         setDefensa(defensa);
         setAtaqueEsp(ataqueEsp);
@@ -191,6 +192,6 @@ public class Pokemon implements Externalizable {
                 defensa + ";" +
                 ataqueEsp + ";" +
                 defensaEsp + ";" +
-                velocidad;
+                velocidad + "\n";
     }
 }

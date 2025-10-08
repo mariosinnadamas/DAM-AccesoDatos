@@ -29,7 +29,6 @@ public class PokemonDAOFile implements PokemonDAO {
         this.f = new File(rutafichero);
     }
 
-
     //Metodo para comprobar que la lista está vacía
     @Override
     public boolean estaVacio() throws DataAccessException {
@@ -65,11 +64,13 @@ public class PokemonDAOFile implements PokemonDAO {
                 throw new DuplicateKeyException("El pokemon ya existe"); //El pokemon ya existía en la lista
             }
         }
-
+        //Añado a la lista
         lista.add(pokemon);
-
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f,true))){
-            oos.writeObject(pokemon);
+        //Reescribo el fichero
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f))){
+            for (Pokemon p : lista){
+                oos.writeObject(pokemon);
+            }
             contadorPokemon++; //Incremento de contador para saber cuantos objetos hay en la lista
         } catch (IOException e) { //Si no encuentra el archivo y/o no se puede escribir
             throw new DataDestFullException("No se ha encontrado el archivo o no se puede escribir");
@@ -97,6 +98,16 @@ public class PokemonDAOFile implements PokemonDAO {
         if (!eliminado){
             throw new DataIntegrityException("No se ha encontrado el Pokémon a eliminar");
         }
+
+        // Reescribimos el fichero con la lista actualizada
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f))) {
+            for (Pokemon p : lista) {
+                oos.writeObject(p);
+            }
+        } catch (IOException e) {
+            throw new DataAccessException("Error reescribiendo el fichero tras eliminar", e);
+        }
+
         return eliminado;
     }
 
@@ -125,7 +136,7 @@ public class PokemonDAOFile implements PokemonDAO {
             throw new DataAccessException("Archivo no encontrado", e);
             //Si los datos leidos no corresponden
         } catch (IOException e) {
-            throw new DataAccessException("Error leyendo el fichero", e);
+            throw new DataAccessException(e.getMessage());
         }
         return pokemonColeccion;
     }
@@ -175,6 +186,7 @@ public class PokemonDAOFile implements PokemonDAO {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta,true))){
             bw.write(p.toCSV());
+            bw.newLine();
         } catch (IOException e) {
             System.err.println("Error escribiendo CSV: " + e.getMessage());
         }
