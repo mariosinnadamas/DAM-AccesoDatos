@@ -1,4 +1,4 @@
-package ejercicios15.excepciones;
+package ejercicios15.pokemon.excepciones;
 
 public class IncompatibleVersionException extends Exception {
 

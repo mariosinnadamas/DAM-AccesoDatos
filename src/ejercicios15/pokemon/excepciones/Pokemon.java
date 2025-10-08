@@ -8,7 +8,7 @@ los siguientes atributos.
 Debes controlar los valores de los parámetros, gestionar posibles errores, etc.
 La clase Pokemon debe implementar Externalizable.
  */
-package ejercicios15;
+package ejercicios15.pokemon.excepciones;
 /*CONDICIONES PARA QUE UNA CLASE SEA JAVA BEAN:
 - Tener un constructor sin argumentos.
 - Sus atributos de clase deben ser privados y ser accesibles mediante métodos get y set.

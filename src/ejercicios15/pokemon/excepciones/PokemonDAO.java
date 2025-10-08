@@ -2,13 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ejercicios15;
-
-import ejercicios15.excepciones.DataAccessException;
-import ejercicios15.excepciones.DataDestFullException;
-import ejercicios15.excepciones.DataIntegrityException;
-import ejercicios15.excepciones.DuplicateKeyException;
-import ejercicios15.excepciones.IncompatibleVersionException;
+package ejercicios15.pokemon.excepciones;
 
 import java.nio.file.NoSuchFileException;
 import java.util.List;
