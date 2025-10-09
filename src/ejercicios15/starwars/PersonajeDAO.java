@@ -41,11 +41,21 @@ public interface PersonajeDAO {
     public ArrayList<Personaje> leerPersonajes() throws AccesoArchivoException, IntegridadCSVException;
 
     /**
+     * Buscar personajes que coincidan en nombre con la cadena pasada por parámetro
+     * @param nombre texto que debe contener el nombre del personaje
+     * @return lista de personajes que coincidan en nombre
+     * @throws AccesoArchivoException
+     * @throws IntegridadCSVException
+     */
+    public ArrayList<Personaje> leerPersonaje(String nombre) throws AccesoArchivoException,IntegridadCSVException;
+
+    /**
      * Actualiza un elemento del almacén
      *
      * @param p Personaje con los mismos datos
      * @return true si se ha podido actualizar
      * @throws AccesoArchivoException Si no se ha podido acceder al archivo
      */
-    public boolean actualizarPersonaje(Personaje p) throws AccesoArchivoException;
+    public boolean actualizarPersonaje(Personaje p) throws AccesoArchivoException, IntegridadCSVException, PersonajeNoEncontradoException;
+
 }

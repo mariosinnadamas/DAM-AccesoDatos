@@ -44,9 +44,34 @@ public class PersonajeDAOFile implements PersonajeDAO{
 
     @Override
     public boolean eliminar(Personaje p) throws AccesoArchivoException, PersonajeNoEncontradoException, IntegridadCSVException {
+        //Obtengo una lista con todos los personajes
         ArrayList<Personaje>lista = leerPersonajes();
         boolean eliminado = false;
-        return false;
+
+        //Recorro la lista y si son iguales lo elimina
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).equals(p)){
+                lista.remove(i);
+                eliminado = true;
+                break;
+            }
+        }
+
+        if (!eliminado){
+            throw new PersonajeNoEncontradoException("No se ha encontrado el personaje a eliminar");
+        }
+        //Reescribo el archivo con la lista nueva
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(f))){
+            bw.write("name,gender,birth_year,height,mass,hair_color,skin_color,eye_color,planet,species");
+            bw.newLine();
+            for (Personaje temp: lista){
+                bw.write(temp.toCSV());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            throw new AccesoArchivoException("No se ha podido reescribir el archivo con la lista nueva");
+        }
+        return eliminado;
     }
 
     @Override
@@ -97,8 +122,47 @@ public class PersonajeDAOFile implements PersonajeDAO{
     }
 
     @Override
-    public boolean actualizarPersonaje(Personaje p) throws AccesoArchivoException {
-        return false;
+    public ArrayList<Personaje> leerPersonaje(String nombre) throws AccesoArchivoException, IntegridadCSVException {
+        ArrayList<Personaje> filtrados = new ArrayList<>();
+        for (Personaje p: leerPersonajes()){
+            if (p.getName().toLowerCase().contains(nombre)){
+                filtrados.add(p);
+            }
+        }
+
+        return filtrados;
+    }
+
+    @Override
+    public boolean actualizarPersonaje(Personaje p) throws PersonajeNoEncontradoException, AccesoArchivoException, IntegridadCSVException {
+        ArrayList<Personaje> listaActualizada = leerPersonajes();
+        boolean actualizado = false;
+        //Busco y comparo por nombre
+        for (int i = 0; i < listaActualizada.size(); i++) {
+            if (listaActualizada.get(i).equals(p)){
+                listaActualizada.set(i,p);
+                actualizado = true;
+                break;
+            }
+        }
+
+        if (!actualizado){
+            //Y si el personaje no ha sido encontrado?
+            throw new PersonajeNoEncontradoException("ERROR AL ACTUALIZAR: La estructura del personaje recibido no coincide");
+        }
+
+        //Reescritura con los datos actualizado
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(f))){
+            bw.write("name,gender,birth_year,height,mass,hair_color,skin_color,eye_color,planet,species");
+            bw.newLine();
+            for (Personaje temp: listaActualizada){
+                bw.write(temp.toCSV());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            throw new AccesoArchivoException("No se ha podido reescribir el archivo con la lista nueva");
+        }
+        return actualizado;
     }
     /*
      * Todo: Hacer un metodo para que respete las " y no usar la expresión regular.
