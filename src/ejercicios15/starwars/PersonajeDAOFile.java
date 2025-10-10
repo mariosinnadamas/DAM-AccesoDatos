@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 public class PersonajeDAOFile implements PersonajeDAO{
     private final File f;
+    /*
+    Esta bien pero sería conveniente usar List antes que ArrayList,
+    ya que List es una interfaz que el día de mañana puede ser
+    actualizado e interesante mantener*/
 
     public PersonajeDAOFile(String path) {
         this.f = new File(path);
