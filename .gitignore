@@ -1,0 +1,92 @@
+# ----------------------------------------
+# IntelliJ IDEA
+# ----------------------------------------
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.idea_modules/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf/
+
+# IntelliJ logs and plugin configs
+.idea/**/httpRequests/
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# JetBrains Rider / other JetBrains IDEs
+.idea/.idea.*
+
+# ----------------------------------------
+# Build output
+# ----------------------------------------
+target/
+build/
+dist/
+classes/
+logs/
+*.log
+
+# ----------------------------------------
+# Maven
+# ----------------------------------------
+.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+dependency-reduced-pom.xml
+release.properties
+
+# ----------------------------------------
+# OS-specific
+# ----------------------------------------
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ----------------------------------------
+# Misc
+# ----------------------------------------
+*.swp
+*.swo
+*.tmp
+*.bak
+*.orig
+*.old
+*.class
+*.war
+*.ear
+
+# Eclipse / NetBeans (por si acaso alguien abre el proyecto)
+.project
+.classpath
+.settings/
+.nbproject/
+
+# ----------------------------------------
+# Environment / Security
+# ----------------------------------------
+.env
+*.key
+*.pem
+*.crt
+*.p12
+*.keystore
+*.jks
