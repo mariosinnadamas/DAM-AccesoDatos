@@ -14,6 +14,7 @@ public class Empleado {
     private String nombre_departamento;
     //Ejercicio 4.1.3
     private String id_director;
+    private Empleado director; //Para llamar al toString del director y modificar el inicio de la cadena
 
     public Empleado() {
 
@@ -60,21 +61,35 @@ public class Empleado {
         this.id_director = id_director;
     }
 
+    public Empleado getDirector() {
+        return director;
+    }
+
+    public void setDirector(Empleado director) {
+        this.director = director;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("id_empleado=").append(id_empleado)
-                .append(", nombre=").append(nombre).append('\'')
-                .append(",apellido=").append(apellido).append('\'')
-                .append(", email=").append(email).append('\'')
-                .append(", telefono=").append(telefono).append('\'')
-                .append(", fecha_contratacion=").append(fecha_contratacion).append('\'')
-                .append(", id_trabajo=").append(id_trabajo).append('\'')
-                .append(", salario=").append(salario).append('\'')
-                .append(", comision=").append(comision).append('\'');
-        if (nombre_departamento != null){
-            sb.append(", nombre_departamento=").append(nombre_departamento).append('\'');
+        String texto = "id_empleado=" + id_empleado +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", email='" + email + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", fecha_contratacion='" + fecha_contratacion + '\'' +
+                ", id_trabajo='" + id_trabajo + '\'' +
+                ", salario=" + salario +
+                ", comision=" + comision;
+
+        if (nombre_departamento != null) {
+            texto += ", nombre_departamento='" + nombre_departamento + '\'';
         }
-        return sb.toString();
+
+        if (director != null) {
+            texto += "\n——Datos director——\n" +
+                    director.toString() +
+                    "\n——Fin DD——";
+        }
+        return texto;
     }
 }
