@@ -5,13 +5,16 @@ import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.*;
 
 public class Ej413 {
-    private static final Dotenv dotenv = Dotenv.load();
+    //private static final Dotenv dotenv = Dotenv.load();
     public static void main(String[] args) {
-        String URL = dotenv.get("DB_URL");
-        String USERNAME = dotenv.get("DB_USERNAME");
-        String PASSWORD = dotenv.get("DB_PASS");
+        //String URL = dotenv.get("DB_URL");
+        String URL = "jdbc:postgresql://localhost:5432/postgres";
+        //String USERNAME = dotenv.get("DB_USERNAME");
+        String USERNAME = "alumno";
+        //String PASS = dotenv.get("DB_PASS");
+        String PASS = "alumno";
 
-        try (Connection con = DriverManager.getConnection(URL, USERNAME,PASSWORD);
+        try (Connection con = DriverManager.getConnection(URL, USERNAME,PASS);
              Statement sentencia = con.createStatement();
              //Ahora mismo solo estoy sacando los directores de cada departamento
              ResultSet resultado = sentencia.executeQuery("SELECT e.*, dep.nombre_departamento, " +

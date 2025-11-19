@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ej412 {
-    private static final Dotenv dotenv = Dotenv.load();
+    //private static final Dotenv dotenv = Dotenv.load();
     public static void main(String[] args) {
-        String URL = dotenv.get("DB_URL");
-        String USERNAME = dotenv.get("DB_USERNAME");
-        String PASS = dotenv.get("DB_PASS");
+        //String URL = dotenv.get("DB_URL");
+        String URL = "jdbc:postgresql://localhost:5432/postgres";
+        //String USERNAME = dotenv.get("DB_USERNAME");
+        String USERNAME = "alumno";
+        //String PASS = dotenv.get("DB_PASS");
+        String PASS = "alumno";
 
         List<Empleado> listaEmpleados = new ArrayList<>();
         Empleado empleado;
