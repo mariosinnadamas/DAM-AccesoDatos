@@ -1,4 +1,4 @@
-package ejercicios41;
+package ejercicios43;
 
 import java.time.LocalDate;
 

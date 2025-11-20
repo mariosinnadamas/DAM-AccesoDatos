@@ -3,17 +3,14 @@ package ejercicios41;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ej412 {
-    //private static final Dotenv dotenv = Dotenv.load();
     public static void main(String[] args) {
-        //String URL = dotenv.get("DB_URL");
         String URL = "jdbc:postgresql://localhost:5432/postgres";
-        //String USERNAME = dotenv.get("DB_USERNAME");
         String USERNAME = "alumno";
-        //String PASS = dotenv.get("DB_PASS");
         String PASS = "alumno";
 
         List<Empleado> listaEmpleados = new ArrayList<>();
@@ -27,10 +24,10 @@ public class Ej412 {
                 String apellido = resultado.getString("apellido");
                 String email = resultado.getString("email");
                 String telefono = resultado.getString("telefono");
-                String fecha_contratacion = resultado.getString("fecha_contratacion");
+                LocalDate fecha_contratacion = resultado.getDate("fecha_contratacion").toLocalDate();
                 String id_trabajo = resultado.getString("id_trabajo");
-                double salario = resultado.getDouble("salario");
-                String comision = resultado.getString("comision");
+                float salario = resultado.getFloat("salario");
+                float comision = resultado.getFloat("comision");
                 String nombre_departamento = resultado.getString("nombre_departamento");
                 empleado = new Empleado(id_empleado,nombre,apellido,email,telefono,fecha_contratacion,id_trabajo,salario,comision,nombre_departamento);
                 listaEmpleados.add(empleado);

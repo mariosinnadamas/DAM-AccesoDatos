@@ -1,72 +1,62 @@
 package ejercicios41;
 
-import io.github.cdimascio.dotenv.Dotenv;
-
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Ej413 {
-    //private static final Dotenv dotenv = Dotenv.load();
     public static void main(String[] args) {
-        //String URL = dotenv.get("DB_URL");
-        String URL = "jdbc:postgresql://localhost:5432/postgres";
-        //String USERNAME = dotenv.get("DB_USERNAME");
-        String USERNAME = "alumno";
-        //String PASS = dotenv.get("DB_PASS");
-        String PASS = "alumno";
+        final String URL = "jdbc:postgresql://localhost:5432/aprendizaje?currentSchema=empleados";
+        final String USERNAME = "alumno";
+        final String PASS = "alumno";
 
-        try (Connection con = DriverManager.getConnection(URL, USERNAME,PASS);
-             Statement sentencia = con.createStatement();
-             //Ahora mismo solo estoy sacando los directores de cada departamento
-             ResultSet resultado = sentencia.executeQuery("SELECT e.*, dep.nombre_departamento, " +
-                            "d.id_empleado AS id_dir, " +
-                            "d.nombre AS nombre_dir, " +
-                            "d.apellido AS apellido_dir, " +
-                            "d.email AS email_dir, " +
-                            "d.telefono AS telefono_dir, " +
-                            "d.fecha_contratacion AS fecha_dir, " +
-                            "d.id_trabajo AS id_trabajo_dir, " +
-                            "d.salario AS salario_dir, " +
-                            "d.comision AS comision_dir " +
-                            "FROM empleados e " +
-                            "LEFT JOIN empleados d ON e.id_director = d.id_empleado " +
-                            "LEFT JOIN departamentos dep ON e.id_departamento = dep.id_departamento")){
-                while (resultado.next()){
-                    int id_empleado = resultado.getInt("id_empleado");
-                    String nombre = resultado.getString("nombre");
-                    String apellido = resultado.getString("apellido");
-                    String email = resultado.getString("email");
-                    String telefono = resultado.getString("telefono");
-                    String fecha_contratacion = resultado.getString("fecha_contratacion");
-                    String id_trabajo = resultado.getString("id_trabajo");
-                    double salario = resultado.getDouble("salario");
-                    String comision = resultado.getString("comision");
-                    String nombre_departamento = resultado.getString("nombre_departamento");
-                    //Recojo los datos y creo los jefes
-                    Empleado empleado = new Empleado(id_empleado,nombre,apellido,email,telefono,fecha_contratacion,
-                            id_trabajo,salario,comision,nombre_departamento);
+        try (Connection con = DriverManager.getConnection(URL, USERNAME, PASS);
+             //Esto permite que pueda volver al inicio, ya que de manera predeterminada está configurado para solo poder ir hacia delante
+             Statement sentencia = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 
-                    // Y ahora creo los empleados
-                    int idDirector = resultado.getInt("id_dir"); //Esto aqui porque puede ser nulo
-                    if (!resultado.wasNull()) {
-                        Empleado director = new Empleado(idDirector,
-                                resultado.getString("nombre_dir"),
-                                resultado.getString("apellido_dir"),
-                                resultado.getString("email_dir"),
-                                resultado.getString("telefono_dir"),
-                                resultado.getString("fecha_dir"),
-                                resultado.getString("id_trabajo_dir"),
-                                resultado.getDouble("salario_dir"),
-                                resultado.getString("comision_dir"),
-                                nombre_departamento
-                        );
-                        empleado.setDirector(director);
-                    }
+             ResultSet resultado = sentencia.executeQuery("SELECT * FROM empleados")) {
 
-                    System.out.println(empleado);
+            //Mapa donde guardo mis empleados por ID
+            Map<Integer, Empleado> empleadosMap = new HashMap<>();
 
+            while (resultado.next()) {
+                //Creamos todos los empleados sin jefe
+                int id = resultado.getInt("id_empleado");
+
+                Empleado e = new Empleado(id,
+                        resultado.getString("nombre"),
+                        resultado.getString("apellido"),
+                        resultado.getString("email"),
+                        resultado.getString("telefono"),
+                        resultado.getDate("fecha_contratacion").toLocalDate(),
+                        resultado.getString("id_trabajo"),
+                        resultado.getFloat("salario"),
+                        resultado.getFloat("comision"));
+                empleadosMap.put(id, e);
+            }
+
+            //Vuelves al inicio del resultSet para hacer una segunda pasada
+            resultado.beforeFirst();
+
+            while (resultado.next()){
+                int idEmpleado = resultado.getInt("id_empleado");
+                int idDirector = resultado.getInt("id_director");
+
+                if (!resultado.wasNull()) {   // si el director NO ES NULL
+                    Empleado empleado = empleadosMap.get(idEmpleado);
+                    Empleado jefe = empleadosMap.get(idDirector);
+
+                    empleado.setJefe(jefe);
                 }
+            }
+
+            for (Empleado e : empleadosMap.values()){
+                System.out.println(e);
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 }
+
+
